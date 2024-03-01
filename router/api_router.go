@@ -46,7 +46,6 @@ func initDefaultRouter(cfg *config.Configuration) *gin.Engine {
 		})
 		return
 	})
-	// 最大运行上传文件大小
 	r.MaxMultipartMemory = cfg.Http.MaxMultipartMemory * 1024 * 1024
 	return r
 }

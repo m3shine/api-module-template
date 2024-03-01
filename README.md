@@ -1,0 +1,1 @@
+gonew github.com/m3shine/api-module-template xxx.com/your_module

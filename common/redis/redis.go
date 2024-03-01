@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-// RedisClient Redis客户端
+// RedisClient
 var RedisClient *redis.Client
 
 // Init
@@ -37,7 +37,7 @@ func GetScoreRankById(setName consts.RedisStoreKey, id int64) (int64, error) {
 	if err != nil {
 		return -1, err
 	}
-	return rank + 1, nil // 排名是从0开始计算的，所以加1
+	return rank + 1, nil //rank from 0, so +1
 }
 
 func DeleteScore(setName consts.RedisStoreKey, id int64) error {

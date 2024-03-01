@@ -8,13 +8,13 @@ import (
 type LockKey string
 
 const (
-	//RedisLockTtl 过期时间
+	//RedisLockTtl expire time
 	RedisLockTtl = time.Second * 30
-	//RedisLockResetTTLInterval 重置过期时间间隔
+	//RedisLockResetTTLInterval redis lock reset ttl interval
 	RedisLockResetTTLInterval = RedisLockTtl / 3
-	//RedisLockTryLockInterval 重新获取锁间隔
+	//RedisLockTryLockInterval retry lock interval
 	RedisLockTryLockInterval = time.Second
-	//RedisLockUnlockScript 解锁脚本
+	//RedisLockUnlockScript lock script
 	RedisLockUnlockScript = `
 			if redis.call("get",KEYS[1]) == ARGV[1] then
 				return redis.call("del",KEYS[1])
@@ -22,7 +22,7 @@ const (
 				return 0
 			end`
 
-	//RedisKeyCPUAssemble CPU组装key
+	//RedisKeyCPUAssemble cpu assemble key
 	RedisKeyCPUAssemble LockKey = "sqrd:cpu:assemble:%s"
 	RedisKeyGPUAssemble LockKey = "sqrd:gpu:assemble:%s"
 	RedisKeyOpenBox     LockKey = "sqrd:open:box:%s"
@@ -30,8 +30,8 @@ const (
 )
 
 var (
-	// RedisLockLockFailedErr 加锁失败
+	// RedisLockLockFailedErr lock failed
 	RedisLockLockFailedErr = errors.New("lock failed")
-	// RedisLockTimeoutErr 加锁超时
+	// RedisLockTimeoutErr lock timeout
 	RedisLockTimeoutErr = errors.New("timeout")
 )
